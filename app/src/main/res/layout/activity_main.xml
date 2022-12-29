@@ -13,8 +13,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="177dp"
-        android:layout_height="118dp"
+        android:layout_width="148dp"
+        android:layout_height="106dp"
         card_view:srcCompat="@drawable/education" />
 
     <androidx.cardview.widget.CardView
