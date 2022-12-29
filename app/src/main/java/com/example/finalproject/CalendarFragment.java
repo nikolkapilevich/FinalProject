@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,19 +24,25 @@ import java.util.ArrayList;
 
 public class CalendarFragment extends Fragment implements CalendarAdapter.OnItemListener{
 
+    private View view;
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
     private LocalDate selectedDate;
+    private Button back,forward;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_calendar, container, false);
+        view = inflater.inflate(R.layout.fragment_calendar, container, false);
         initWidgets();
         selectedDate = LocalDate.now();
         setMonthView();
+        back = view.findViewById(R.id.back);
+        forward = view.findViewById(R.id.forward);
+        back.setOnClickListener(this::previousMonth);
+        forward.setOnClickListener(this::nextMonth);
 
         return view;
     }
@@ -43,8 +50,8 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
 
     private void initWidgets()
     {
-        calendarRecyclerView = getView().findViewById(R.id.calendarRecyclerView);
-        monthYearText = getView().findViewById(R.id.monthYearTV);
+        calendarRecyclerView = view.findViewById(R.id.calendarRecyclerView);
+        monthYearText = view.findViewById(R.id.monthYearTV);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
