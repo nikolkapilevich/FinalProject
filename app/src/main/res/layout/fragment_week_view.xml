@@ -4,64 +4,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".CalendarFragment">
+    tools:context=".WeekViewFragment">
 
-    <Button
-        android:layout_width="wrap_content"
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:id="@+id/btnWeek"
-        android:text="weekly"
-        android:textColor="@color/blue"
-        android:background="@null"
-        android:textStyle="bold"
-        android:onClick="Weekly"
-        android:textSize="20sp"/>
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp">
 
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:orientation="horizontal"
-       android:layout_marginBottom="20dp"
-       android:layout_marginTop="20dp">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/backWeek"
+            android:text="@string/back"
+            android:textColor="@color/blue"
+            android:background="@null"
+            android:textStyle="bold"
+            android:onClick="previousWeek"
+            android:textSize="20sp"/>
 
-       <Button
-           android:layout_width="0dp"
-           android:layout_height="wrap_content"
-           android:layout_weight="1"
-           android:id="@+id/back"
-           android:text="@string/back"
-           android:textColor="@color/blue"
-           android:background="@null"
-           android:textStyle="bold"
-           android:onClick="previousMonth"
-           android:textSize="20sp"/>
-
-       <TextView
-           android:id="@+id/monthYearTV"
-           android:layout_width="0dp"
-           android:layout_weight="2"
-           android:layout_height="wrap_content"
-           android:text="Dec 2022"
-           android:textSize="20sp"
-           android:textAlignment="center"
-           android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/monthYearTV"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:text="Dec 2022"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:textColor="@color/black"/>
 
 
-       <Button
-           android:layout_width="0dp"
-           android:layout_height="wrap_content"
-           android:layout_weight="1"
-           android:id="@+id/forward"
-           android:text="@string/forward"
-           android:textColor="@color/blue"
-           android:background="@null"
-           android:textStyle="bold"
-           android:onClick="nextMonth"
-           android:textSize="20sp"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/forwardWeek"
+            android:text="@string/forward"
+            android:textColor="@color/blue"
+            android:background="@null"
+            android:textStyle="bold"
+            android:onClick="nextWeek"
+            android:textSize="20sp"/>
 
 
-   </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -136,7 +126,25 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/calendarRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnEvent"
+        android:text="New Event"
+        android:textColor="@color/blue"
+        android:background="@null"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:onClick="newEvent"
+        android:textSize="20sp"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"/>
 
 
 
