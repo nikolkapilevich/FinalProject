@@ -2,7 +2,6 @@ package com.example.finalproject;
 
 import static com.example.finalproject.CalendarUtils.daysInMonthArray;
 
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -19,7 +18,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.time.LocalDate;
-import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -94,24 +92,24 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
 
     }
 
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
-    public void onItemClick(int position, String dayText)
+    public void onItemClick(int position, LocalDate date)
     {
-        if (dayText.equals(""))
+        if (date != null)
         {
-            String message = "Selected Date" + dayText + " " + monthYearFromDate(CalendarUtils.selectedDate);
-
+            CalendarUtils.selectedDate = date;
+            setMonthView();
         }
 
     }
 
-    public void Weekly (View view)
+    public void Weekly (View view) // intent between fragments
     {
         Fragment secondFrag = new WeekViewFragment();
         FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
         fm.replace(R.id.frameLayout,secondFrag).commit();
 
-       // startActivity(new Intent(this,WeekViewFragment));
     }
 }

@@ -6,6 +6,7 @@ import androidx.annotation.RequiresApi;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -13,6 +14,20 @@ import java.util.ArrayList;
 public class CalendarUtils
 {
     public static LocalDate selectedDate;
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static String formattedDate(LocalDate date)
+    {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+        return date.format(formatter);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static String formattedTime(LocalTime time)
+    {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
+        return time.format(formatter);
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static String monthYearFromDate (LocalDate date)
@@ -76,6 +91,7 @@ public class CalendarUtils
 
         return null;
     }
+
 
 
 }

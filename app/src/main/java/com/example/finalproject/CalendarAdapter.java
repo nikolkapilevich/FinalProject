@@ -40,7 +40,7 @@ public class CalendarAdapter extends RecyclerView.Adapter <CalendarViewHolder> {
         }
 
 
-        return new CalendarViewHolder(view, onItemListener);
+        return new CalendarViewHolder(days, view, onItemListener);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -70,7 +70,7 @@ public class CalendarAdapter extends RecyclerView.Adapter <CalendarViewHolder> {
 
     public interface OnItemListener
     {
-        void onItemClick(int position, String dayText);
+        void onItemClick(int position, LocalDate date);
 
     }
 }
