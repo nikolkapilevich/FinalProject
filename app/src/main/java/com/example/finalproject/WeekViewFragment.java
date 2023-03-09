@@ -28,7 +28,7 @@ public class WeekViewFragment extends Fragment implements CalendarAdapter.OnItem
     private View view;
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
-    private Button backWeek , forwardWeek,btnEvent;
+    private Button backWeek , forwardWeek,btnEvent , btnDaily;
     private ListView eventListView;
 
 
@@ -46,6 +46,8 @@ public class WeekViewFragment extends Fragment implements CalendarAdapter.OnItem
         setWeekView();
         btnEvent = view.findViewById(R.id.btnEvent);
         btnEvent.setOnClickListener(this::newEvent);
+        btnDaily = view.findViewById(R.id.btnDaily);
+        btnDaily.setOnClickListener(this::Daily);
 
         return view;
     }
@@ -110,6 +112,14 @@ public class WeekViewFragment extends Fragment implements CalendarAdapter.OnItem
     public void newEvent (View view)
     {
         Fragment secondFrag = new EventEditFragment();
+        FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
+        fm.replace(R.id.frameLayout,secondFrag).commit();
+
+    }
+
+    public void Daily (View view)
+    {
+        Fragment secondFrag = new DailyCalendarFragment();
         FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
         fm.replace(R.id.frameLayout,secondFrag).commit();
 
