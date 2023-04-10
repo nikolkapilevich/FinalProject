@@ -12,5 +12,7 @@
     <color name="gray">#828282</color>
     <color name="light_gray">#CFCBCB</color>
     <color name="blue">#305ED3</color>
+    <color name="light_purple">#e1c2ff</color>
+    <color name="dark_purple">#3d0075</color>
 
 </resources>
