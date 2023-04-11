@@ -1,5 +1,7 @@
 package com.example.finalproject;
 
+import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +32,31 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
         View view = LayoutInflater.from(checkListFragment.getContext()).inflate(R.layout.each_task,parent,false);
         firestore = FirebaseFirestore.getInstance();
         return new MyViewHolder(view);
+    }
+
+    public void deleteTask (int position){
+        ToDoModel toDoModel = todoList.get(position);
+        firestore.collection("task").document(toDoModel.TaskId).delete();
+        todoList.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    public Context getContext(){
+        return checkListFragment.getContext();
+    }
+
+    public void editTask (int position){
+        ToDoModel toDoModel = todoList.get(position);
+
+        Bundle bundle = new Bundle();
+        bundle.putString("task", toDoModel.getTask());
+        bundle.putString("due", toDoModel.getDue());
+        bundle.putString("id", toDoModel.TaskId);
+
+        AddNewTask addNewTask = new AddNewTask();
+        addNewTask.setArguments(bundle);
+        addNewTask.show(checkListFragment.getActivity().getSupportFragmentManager(), addNewTask.getTag());
+
     }
 
     @Override
