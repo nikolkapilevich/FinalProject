@@ -14,5 +14,16 @@
     <color name="blue">#305ED3</color>
     <color name="light_purple">#e1c2ff</color>
     <color name="dark_purple">#3d0075</color>
+    <color name="very_light_purple">#ece0ff</color>
+    <color name="dark_blue">#333eff</color>
+    <color name="light_blue">#d6f2ff</color>
+    <color name="light_pink">#ffdbff</color>
+    <color name="dark_pink">#f000ee</color>
+    <color name="light_yellow">#ffffad</color>
+    <color name="dark_yellow">#ffff05</color>
+    <color name="dark_gray">#919191</color>
+
+
+
 
 </resources>

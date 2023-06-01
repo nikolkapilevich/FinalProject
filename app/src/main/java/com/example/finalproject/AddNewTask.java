@@ -1,11 +1,15 @@
 package com.example.finalproject;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -14,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +33,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,6 +49,8 @@ public class AddNewTask extends BottomSheetDialogFragment
     private String dueDate = "";
     private String id = "";
     private String dueDateUpdate ="";
+    private ImageButton micBtn;
+    private static final int RECOGNIZER_CODE = 1;
 
     public static AddNewTask newInstance()
     {
@@ -62,6 +70,17 @@ public class AddNewTask extends BottomSheetDialogFragment
         setDueDate = view.findViewById(R.id.tvSetDue);
         mTaskEdit = view.findViewById(R.id.etTask);
         mSaveBtn = view.findViewById(R.id.btnSaveTask);
+
+        micBtn = view.findViewById(R.id.micBtn);
+        micBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL , RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                intent.putExtra(RecognizerIntent.EXTRA_PROMPT , "Speak Up");
+                startActivityForResult(intent,RECOGNIZER_CODE);
+            }
+        });
 
         firestore = FirebaseFirestore.getInstance();
 
@@ -172,6 +191,16 @@ public class AddNewTask extends BottomSheetDialogFragment
                     dismiss();
             }
         });
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RECOGNIZER_CODE && resultCode == RESULT_OK){
+            ArrayList<String> taskText = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            mTaskEdit.setText(taskText.get(0).toString());
+        }
     }
 
     @Override

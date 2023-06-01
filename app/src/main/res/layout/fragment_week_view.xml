@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".WeekViewFragment">
+    tools:context=".WeekViewFragment"
+    android:background="@color/light_pink">
 
     <Button
         android:layout_width="wrap_content"
@@ -12,7 +13,7 @@
         android:layout_gravity="center"
         android:id="@+id/btnDaily"
         android:text="daily"
-        android:textColor="@color/blue"
+        android:textColor="@color/dark_pink"
         android:background="@null"
         android:textStyle="bold"
         android:onClick="Daily"
@@ -31,7 +32,7 @@
             android:layout_weight="1"
             android:id="@+id/backWeek"
             android:text="@string/back"
-            android:textColor="@color/blue"
+            android:textColor="@color/dark_pink"
             android:background="@null"
             android:textStyle="bold"
             android:onClick="previousWeek"
@@ -54,7 +55,7 @@
             android:layout_weight="1"
             android:id="@+id/forwardWeek"
             android:text="@string/forward"
-            android:textColor="@color/blue"
+            android:textColor="@color/dark_pink"
             android:background="@null"
             android:textStyle="bold"
             android:onClick="nextWeek"
@@ -144,7 +145,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnEvent"
         android:text="New Event"
-        android:textColor="@color/blue"
+        android:textColor="@color/dark_pink"
         android:background="@null"
         android:textStyle="bold"
         android:layout_gravity="center"

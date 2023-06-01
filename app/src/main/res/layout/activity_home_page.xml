@@ -5,6 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     tools:context=".MainActivity">
 
     <RelativeLayout
@@ -22,14 +23,272 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/white"
                 app:navigationIcon="@drawable/ic_baseline_menu_24"
-                app:title="Stu-Cal" />
+                app:title="Daily Assistant" />
         </com.google.android.material.appbar.AppBarLayout>
 
         <FrameLayout
             android:id="@+id/frameLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/appbarLayout" />
+            android:layout_width="715dp"
+            android:layout_height="1352dp"
+            android:layout_below="@+id/appbarLayout"
+            android:layout_marginTop="-1dp"
+
+            android:background="@color/very_light_purple">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="97dp"
+                android:layout_height="102dp"
+                android:layout_marginLeft="150dp"
+                android:layout_marginTop="30dp"
+                app:srcCompat="@drawable/profile" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="46dp"
+                android:layout_marginLeft="115dp"
+                android:layout_marginTop="140dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Welcome back!"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="46dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="170dp"
+                android:text="Have a good day"
+                android:textColor="@color/dark_purple"
+                android:textSize="35sp"
+                android:textStyle="bold" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="453dp"
+                android:layout_marginTop="225dp"
+                android:background="@drawable/bottom_background">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="135dp"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            tools:layout_margin="16dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/white_btn_background">
+
+                                <ImageView
+                                    android:id="@+id/imageView6"
+                                    android:layout_width="129dp"
+                                    android:layout_height="122dp"
+                                    android:layout_margin="8dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:srcCompat="@drawable/circle" />
+
+                                <ImageView
+                                    android:id="@+id/calendarIv"
+                                    android:layout_width="48dp"
+                                    android:layout_height="42dp"
+                                    app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+                                    app:layout_constraintEnd_toEndOf="@+id/imageView6"
+                                    app:layout_constraintHorizontal_bias="0.55"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="@+id/imageView6"
+                                    app:srcCompat="@drawable/calendar" />
+
+                                <TextView
+                                    android:id="@+id/textView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Calendar"
+                                    android:textColor="#000000"
+                                    app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.494"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintVertical_bias="1.0" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            tools:layout_margin="16dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/white_btn_background">
+
+                                <ImageView
+                                    android:id="@+id/imageView6"
+                                    android:layout_width="129dp"
+                                    android:layout_height="122dp"
+                                    android:layout_margin="8dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:srcCompat="@drawable/circle" />
+
+                                <ImageView
+                                    android:id="@+id/todolistIv"
+                                    android:layout_width="48dp"
+                                    android:layout_height="42dp"
+                                    app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+                                    app:layout_constraintEnd_toEndOf="@+id/imageView6"
+                                    app:layout_constraintHorizontal_bias="0.55"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="@+id/imageView6"
+                                    app:srcCompat="@drawable/todolist" />
+
+                                <TextView
+                                    android:id="@+id/textView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="To Do List"
+                                    android:textColor="#000000"
+                                    app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.494"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintVertical_bias="1.0" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </LinearLayout>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            tools:layout_margin="16dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/white_btn_background">
+
+                                <ImageView
+                                    android:id="@+id/imageView6"
+                                    android:layout_width="129dp"
+                                    android:layout_height="122dp"
+                                    android:layout_margin="8dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:srcCompat="@drawable/circle" />
+
+                                <ImageView
+                                    android:id="@+id/notesIv"
+                                    android:layout_width="48dp"
+                                    android:layout_height="42dp"
+                                    app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+                                    app:layout_constraintEnd_toEndOf="@+id/imageView6"
+                                    app:layout_constraintHorizontal_bias="0.55"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="@+id/imageView6"
+                                    app:srcCompat="@drawable/pencil" />
+
+                                <TextView
+                                    android:id="@+id/textView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Notes"
+                                    android:textColor="#000000"
+                                    app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.494"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintVertical_bias="1.0" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            tools:layout_margin="16dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/white_btn_background">
+
+                                <ImageView
+                                    android:id="@+id/imageView6"
+                                    android:layout_width="129dp"
+                                    android:layout_height="122dp"
+                                    android:layout_margin="8dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:srcCompat="@drawable/circle" />
+
+                                <ImageView
+                                    android:id="@+id/logoutIv"
+                                    android:layout_width="48dp"
+                                    android:layout_height="42dp"
+                                    app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+                                    app:layout_constraintEnd_toEndOf="@+id/imageView6"
+                                    app:layout_constraintHorizontal_bias="0.55"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="@+id/imageView6"
+                                    app:srcCompat="@drawable/logout" />
+
+                                <TextView
+                                    android:id="@+id/textView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Log Out"
+                                    android:textColor="#000000"
+                                    app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.494"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintVertical_bias="1.0" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </LinearLayout>
+
+                    </TableRow>
+
+                </TableLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </FrameLayout>
+
 
     </RelativeLayout>
 
@@ -39,7 +298,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/my_navigation_items"
-        />
+        app:menu="@menu/my_navigation_items">
+
+    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

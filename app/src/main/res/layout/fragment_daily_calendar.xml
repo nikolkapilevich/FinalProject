@@ -5,7 +5,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DailyCalendarFragment">
+    tools:context=".DailyCalendarFragment"
+    android:background="@color/light_pink">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +20,7 @@
             android:layout_weight="1"
             android:id="@+id/backDay"
             android:text="@string/back"
-            android:textColor="@color/blue"
+            android:textColor="@color/dark_pink"
             android:background="@null"
             android:textStyle="bold"
             android:onClick="previousDay"
@@ -42,7 +43,7 @@
             android:layout_weight="1"
             android:id="@+id/forwardDay"
             android:text="@string/forward"
-            android:textColor="@color/blue"
+            android:textColor="@color/dark_pink"
             android:background="@null"
             android:textStyle="bold"
             android:onClick="nextDay"
@@ -65,7 +66,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnEvent"
         android:text="New Event"
-        android:textColor="@color/blue"
+        android:textColor="@color/dark_pink"
         android:background="@null"
         android:textStyle="bold"
         android:layout_gravity="center"

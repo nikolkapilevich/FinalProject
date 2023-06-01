@@ -6,6 +6,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity  {
     TextView signupText;
     Button loginButton;
     FirebaseAuth auth;
+    MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,9 @@ public class MainActivity extends AppCompatActivity  {
         password = findViewById(R.id.password);
         loginButton = findViewById(R.id.loginButton);
         signupText=(TextView)findViewById(R.id.signupText);
+        mediaPlayer = MediaPlayer.create(this, R.raw.music);
+        mediaPlayer.start();
+        mediaPlayer.setLooping(true);
 
         auth = FirebaseAuth.getInstance();
 
