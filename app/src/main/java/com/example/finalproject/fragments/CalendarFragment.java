@@ -1,6 +1,6 @@
-package com.example.finalproject;
+package com.example.finalproject.fragments;
 
-import static com.example.finalproject.CalendarUtils.daysInMonthArray;
+import static com.example.finalproject.classes.CalendarUtils.daysInMonthArray;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -17,12 +17,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.finalproject.adapters.CalendarAdapter;
+import com.example.finalproject.classes.CalendarUtils;
+import com.example.finalproject.R;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 
-public class CalendarFragment extends Fragment implements CalendarAdapter.OnItemListener{
+public class CalendarFragment extends Fragment implements CalendarAdapter.OnItemListener {
 
     private View view;
     private TextView monthYearText;

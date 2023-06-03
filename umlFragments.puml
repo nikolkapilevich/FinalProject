@@ -1,0 +1,106 @@
+@startuml
+class com.example.finalproject.fragments.DailyCalendarFragment {
++ View view
+- TextView monthDayText
+- ListView hourListView
+- Button backDay
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void initWidgets()
++ void onResume()
+- void setDayView()
+- void setHourAdapter()
+- ArrayList<HourEvent> hourEventList()
++ void previousDay(View)
++ void nextDay(View)
++ void newEventAction(View)
+}
+class com.example.finalproject.fragments.NotesFragment {
+~ FloatingActionButton fab
+~ View view
+~ RecyclerView recycler
+~ ArrayList<DataClass> dataList
+~ MyAdapter adapter
+- DatabaseReference databaseReference
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+}
+class com.example.finalproject.fragments.CalendarFragment {
+- View view
+- TextView monthYearText
+- RecyclerView calendarRecyclerView
+- LocalDate selectedDate
+- Button back
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void initWidgets()
+- void setMonthView()
++ String monthYearFromDate(LocalDate)
++ void previousMonth(View)
++ void nextMonth(View)
++ void onItemClick(int,LocalDate)
++ void Weekly(View)
+}
+class com.example.finalproject.fragments.UploadFragment {
+~ View view
+- FloatingActionButton uploadBtn
+- ImageView uploadImage
+~ EditText uploadCaption
+~ ProgressBar progressBar
+- Uri imageUri
+- DatabaseReference databaseReference
+- StorageReference storageReference
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void uploadToFirebase(Uri)
+- String getFileExtension(Uri)
+}
+class com.example.finalproject.fragments.CheckListFragment {
+- View view
+- RecyclerView recyclerView
+- FloatingActionButton mFab
+- FirebaseFirestore firestore
+- ToDoAdapter adapter
+- List<ToDoModel> mList
+- Query query
+- ListenerRegistration listenerRegistration
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void showData()
++ void onDialogClose(DialogInterface)
+}
+class com.example.finalproject.fragments.WeekViewFragment {
+- View view
+- TextView monthYearText
+- RecyclerView calendarRecyclerView
+- Button backWeek
+- ListView eventListView
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void initWidgets()
+- void setWeekView()
++ void previousWeek(View)
++ void nextWeek(View)
++ void onItemClick(int,LocalDate)
++ void onResume()
+- void setEventAdapter()
++ void newEvent(View)
++ void Daily(View)
+}
+class com.example.finalproject.fragments.EventEditFragment {
+- View view
+- EditText etEventName
+- TextView tvEventDate
+- LocalTime time
+- Button btnSave
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void initWidgets()
++ void saveEvent(View)
+}
+
+
+androidx.fragment.app.Fragment <|-- com.example.finalproject.fragments.DailyCalendarFragment
+androidx.fragment.app.Fragment <|-- com.example.finalproject.fragments.NotesFragment
+com.example.finalproject.fragments.OnItemListener <|.. com.example.finalproject.fragments.CalendarFragment
+androidx.fragment.app.Fragment <|-- com.example.finalproject.fragments.CalendarFragment
+androidx.fragment.app.Fragment <|-- com.example.finalproject.fragments.UploadFragment
+com.example.finalproject.classes.OnDialogCloseListener <|.. com.example.finalproject.fragments.CheckListFragment
+androidx.fragment.app.Fragment <|-- com.example.finalproject.fragments.CheckListFragment
+com.example.finalproject.fragments.OnItemListener <|.. com.example.finalproject.fragments.WeekViewFragment
+androidx.fragment.app.Fragment <|-- com.example.finalproject.fragments.WeekViewFragment
+androidx.fragment.app.Fragment <|-- com.example.finalproject.fragments.EventEditFragment
+@enduml

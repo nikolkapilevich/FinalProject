@@ -1,4 +1,4 @@
-package com.example.finalproject;
+package com.example.finalproject.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.finalproject.classes.DataClass;
+import com.example.finalproject.R;
 
 import java.util.ArrayList;
 

@@ -1,9 +1,7 @@
-package com.example.finalproject;
+package com.example.finalproject.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -15,14 +13,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.finalproject.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
-import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity  {
 
@@ -50,7 +45,7 @@ public class MainActivity extends AppCompatActivity  {
         signupText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,RegisterPage.class);
+                Intent intent = new Intent(MainActivity.this, RegisterPage.class);
                 startActivity(intent);
 
                 Toast.makeText(MainActivity.this,"intent successfully",Toast.LENGTH_LONG).show();
@@ -69,7 +64,7 @@ public class MainActivity extends AppCompatActivity  {
                             @Override
                             public void onSuccess(AuthResult authResult) {
                                 Toast.makeText(MainActivity.this,"Login successfully",Toast.LENGTH_LONG).show();
-                                startActivity(new Intent(MainActivity.this,HomePage.class));
+                                startActivity(new Intent(MainActivity.this, HomePage.class));
                                 finish();
                             }
                         }).addOnFailureListener(new OnFailureListener() {

@@ -1,4 +1,4 @@
-package com.example.finalproject;
+package com.example.finalproject.adapters;
 
 import android.graphics.Color;
 import android.os.Build;
@@ -9,6 +9,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.finalproject.classes.CalendarUtils;
+import com.example.finalproject.classes.CalendarViewHolder;
+import com.example.finalproject.R;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

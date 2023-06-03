@@ -1,4 +1,4 @@
-package com.example.finalproject;
+package com.example.finalproject.classes;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -25,6 +25,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.finalproject.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;

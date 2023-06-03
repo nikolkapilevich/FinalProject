@@ -1,12 +1,14 @@
-package com.example.finalproject;
+package com.example.finalproject.classes;
+
+import com.example.finalproject.classes.Event;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class HourEvent
 {
-    LocalTime time;
-    ArrayList<Event> events;
+    public LocalTime time;
+    public ArrayList<Event> events;
 
     public HourEvent(LocalTime time, ArrayList<Event> events) {
         this.time = time;

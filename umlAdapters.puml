@@ -1,0 +1,68 @@
+@startuml
+class com.example.finalproject.adapters.EventAdapter {
++ <<Create>> EventAdapter(Context,List<Event>)
++ View getView(int,View,ViewGroup)
+}
+class com.example.finalproject.adapters.HourAdapter {
++ <<Create>> HourAdapter(Context,List<HourEvent>)
++ View getView(int,View,ViewGroup)
+- void setHour(View,LocalTime)
+- void setEvents(View,ArrayList<Event>)
+- void setEvent(TextView,Event)
+- void hideEvent(TextView)
+}
+class com.example.finalproject.adapters.CalendarAdapter {
+- ArrayList<LocalDate> days
+- OnItemListener onItemListener
++ <<Create>> CalendarAdapter(ArrayList<LocalDate>,OnItemListener)
++ CalendarViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(CalendarViewHolder,int)
++ int getItemCount()
+}
+interface com.example.finalproject.adapters.CalendarAdapter$OnItemListener {
+~ void onItemClick(int,LocalDate)
+}
+class com.example.finalproject.adapters.ToDoAdapter {
+- List<ToDoModel> todoList
+- CheckListFragment checkListFragment
+- FirebaseFirestore firestore
++ <<Create>> ToDoAdapter(CheckListFragment,List<ToDoModel>)
++ MyViewHolder onCreateViewHolder(ViewGroup,int)
++ void deleteTask(int)
++ Context getContext()
++ void editTask(int)
++ void onBindViewHolder(MyViewHolder,int)
+- boolean toBoolean(int)
++ int getItemCount()
+}
+class com.example.finalproject.adapters.ToDoAdapter$MyViewHolder {
+~ TextView tvDueDate
+~ CheckBox mCheckBox
++ <<Create>> MyViewHolder(View)
+}
+class com.example.finalproject.adapters.MyAdapter {
+- ArrayList<DataClass> dataList
+- Context context
++ <<Create>> MyAdapter(ArrayList<DataClass>,Context)
++ MyViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(MyViewHolder,int)
++ int getItemCount()
+}
+class com.example.finalproject.adapters.MyAdapter$MyViewHolder {
+~ ImageView recyclerImage
+~ TextView recyclerCaption
++ <<Create>> MyViewHolder(View)
+}
+
+
+android.widget.ArrayAdapter <|-- com.example.finalproject.adapters.EventAdapter
+android.widget.ArrayAdapter <|-- com.example.finalproject.adapters.HourAdapter
+com.example.finalproject.adapters.Adapter <|-- com.example.finalproject.adapters.CalendarAdapter
+com.example.finalproject.adapters.CalendarAdapter +.. com.example.finalproject.adapters.CalendarAdapter$OnItemListener
+com.example.finalproject.adapters.Adapter <|-- com.example.finalproject.adapters.ToDoAdapter
+com.example.finalproject.adapters.ToDoAdapter +.. com.example.finalproject.adapters.ToDoAdapter$MyViewHolder
+com.example.finalproject.adapters.ViewHolder <|-- com.example.finalproject.adapters.ToDoAdapter$MyViewHolder
+com.example.finalproject.adapters.Adapter <|-- com.example.finalproject.adapters.MyAdapter
+com.example.finalproject.adapters.MyAdapter +.. com.example.finalproject.adapters.MyAdapter$MyViewHolder
+com.example.finalproject.adapters.ViewHolder <|-- com.example.finalproject.adapters.MyAdapter$MyViewHolder
+@enduml

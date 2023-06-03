@@ -1,0 +1,101 @@
+@startuml
+class com.example.finalproject.classes.ToDoModel {
+- String task
+- int status
++ String getTask()
++ String getDue()
++ int getStatus()
+}
+class com.example.finalproject.classes.AddNewTask {
++ {static} String TAG
+- TextView setDueDate
+- EditText mTaskEdit
+- Button mSaveBtn
+- FirebaseFirestore firestore
+- Context context
+- String dueDate
+- String id
+- String dueDateUpdate
+- ImageButton micBtn
+- {static} int RECOGNIZER_CODE
++ {static} AddNewTask newInstance()
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void onViewCreated(View,Bundle)
++ void onActivityResult(int,int,Intent)
++ void onAttach(Context)
++ void onDismiss(DialogInterface)
+}
+class com.example.finalproject.classes.CalendarUtils {
++ {static} LocalDate selectedDate
++ {static} String formattedDate(LocalDate)
++ {static} String formattedTime(LocalTime)
++ {static} String formattedShortTime(LocalTime)
++ {static} String monthYearFromDate(LocalDate)
++ {static} String monthDayFromDate(LocalDate)
++ {static} ArrayList<LocalDate> daysInMonthArray()
++ {static} ArrayList<LocalDate> daysInWeekArray(LocalDate)
+- {static} LocalDate sundayForDate(LocalDate)
+}
+interface com.example.finalproject.classes.OnDialogCloseListener {
+~ void onDialogClose(DialogInterface)
+}
+class com.example.finalproject.classes.CalendarViewHolder {
+- ArrayList<LocalDate> days
++ View parentView
++ TextView DayOfMonth
+- CalendarAdapter.OnItemListener onItemListener
++ <<Create>> CalendarViewHolder(ArrayList<LocalDate>,View,CalendarAdapter.OnItemListener)
++ void onClick(View)
+}
+class com.example.finalproject.classes.Event {
++ {static} ArrayList<Event> eventsList
+- String name
+- LocalDate date
+- LocalTime time
++ <<Create>> Event(String,LocalDate,LocalTime)
++ {static} ArrayList<Event> eventsForDate(LocalDate)
++ {static} ArrayList<Event> eventsForDateAndTime(LocalDate,LocalTime)
++ String getName()
++ void setName(String)
++ LocalDate getDate()
++ void setDate(LocalDate)
++ LocalTime getTime()
++ void setTime(LocalTime)
+}
+class com.example.finalproject.classes.TaskId {
++ String TaskId
++ T withId(String)
+}
+class com.example.finalproject.classes.HourEvent {
+~ LocalTime time
+~ ArrayList<Event> events
++ <<Create>> HourEvent(LocalTime,ArrayList<Event>)
++ LocalTime getTime()
++ void setTime(LocalTime)
++ ArrayList<Event> getEvents()
++ void setEvents(ArrayList<Event>)
+}
+class com.example.finalproject.classes.TouchHelper {
+- ToDoAdapter adapter
++ <<Create>> TouchHelper(ToDoAdapter)
++ boolean onMove(RecyclerView,RecyclerView.ViewHolder,RecyclerView.ViewHolder)
++ void onSwiped(RecyclerView.ViewHolder,int)
++ void onChildDraw(Canvas,RecyclerView,RecyclerView.ViewHolder,float,float,int,boolean)
+}
+class com.example.finalproject.classes.DataClass {
+- String imageURL
++ <<Create>> DataClass(String,String)
++ <<Create>> DataClass()
++ String getImageURL()
++ void setImageURL(String)
++ String getCaption()
++ void setCaption(String)
+}
+
+
+com.example.finalproject.classes.TaskId <|-- com.example.finalproject.classes.ToDoModel
+com.google.android.material.bottomsheet.BottomSheetDialogFragment <|-- com.example.finalproject.classes.AddNewTask
+com.example.finalproject.classes.OnClickListener <|.. com.example.finalproject.classes.CalendarViewHolder
+com.example.finalproject.classes.ViewHolder <|-- com.example.finalproject.classes.CalendarViewHolder
+com.example.finalproject.classes.SimpleCallback <|-- com.example.finalproject.classes.TouchHelper
+@enduml

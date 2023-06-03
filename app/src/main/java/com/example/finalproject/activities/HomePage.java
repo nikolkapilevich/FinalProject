@@ -1,4 +1,4 @@
-package com.example.finalproject;
+package com.example.finalproject.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -22,6 +22,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.finalproject.fragments.CalendarFragment;
+import com.example.finalproject.fragments.CheckListFragment;
+import com.example.finalproject.fragments.NotesFragment;
+import com.example.finalproject.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 

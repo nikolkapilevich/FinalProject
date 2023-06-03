@@ -1,10 +1,13 @@
-package com.example.finalproject;
+package com.example.finalproject.classes;
 
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.finalproject.R;
+import com.example.finalproject.adapters.CalendarAdapter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

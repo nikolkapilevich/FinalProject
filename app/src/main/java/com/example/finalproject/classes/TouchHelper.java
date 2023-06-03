@@ -1,4 +1,4 @@
-package com.example.finalproject;
+package com.example.finalproject.classes;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -9,6 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.finalproject.R;
+import com.example.finalproject.adapters.ToDoAdapter;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 

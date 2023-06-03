@@ -1,4 +1,4 @@
-package com.example.finalproject;
+package com.example.finalproject.fragments;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -12,6 +12,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.finalproject.classes.CalendarUtils;
+import com.example.finalproject.classes.Event;
+import com.example.finalproject.R;
 
 import java.time.LocalTime;
 

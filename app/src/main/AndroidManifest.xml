@@ -16,16 +16,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinalProject">
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".HomePage"
+            android:name=".activities.HomePage"
             android:exported="true" />
         <activity
-            android:name=".RegisterPage"
+            android:name=".activities.RegisterPage"
             android:exported="true" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".activities.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

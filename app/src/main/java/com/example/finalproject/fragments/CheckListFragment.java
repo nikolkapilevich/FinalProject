@@ -1,4 +1,4 @@
-package com.example.finalproject;
+package com.example.finalproject.fragments;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -13,6 +13,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.finalproject.classes.AddNewTask;
+import com.example.finalproject.classes.OnDialogCloseListener;
+import com.example.finalproject.R;
+import com.example.finalproject.adapters.ToDoAdapter;
+import com.example.finalproject.classes.ToDoModel;
+import com.example.finalproject.classes.TouchHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
@@ -23,10 +29,9 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-public class CheckListFragment extends Fragment implements OnDialogCloseListener{
+public class CheckListFragment extends Fragment implements OnDialogCloseListener {
 
     private View view;
     private RecyclerView recyclerView;

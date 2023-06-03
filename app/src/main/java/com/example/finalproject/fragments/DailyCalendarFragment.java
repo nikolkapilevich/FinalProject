@@ -1,6 +1,6 @@
-package com.example.finalproject;
+package com.example.finalproject.fragments;
 
-import static com.example.finalproject.CalendarUtils.selectedDate;
+import static com.example.finalproject.classes.CalendarUtils.selectedDate;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -8,7 +8,6 @@ import android.os.Bundle;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,10 +16,15 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.finalproject.classes.CalendarUtils;
+import com.example.finalproject.classes.Event;
+import com.example.finalproject.adapters.HourAdapter;
+import com.example.finalproject.classes.HourEvent;
+import com.example.finalproject.R;
+
 import java.time.LocalTime;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 public class DailyCalendarFragment extends Fragment {

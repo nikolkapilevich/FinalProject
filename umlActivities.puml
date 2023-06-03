@@ -1,0 +1,43 @@
+@startuml
+class com.example.finalproject.RegisterPage {
+~ EditText regisEmail
+~ Button regisButton
+- FirebaseAuth auth
+# void onCreate(Bundle)
+}
+class com.example.finalproject.HomePage {
+~ MaterialToolbar toolbar
+~ DrawerLayout drawerLayout
+~ NavigationView navigationView
+~ ImageView calendarIv
+~ SensorManager sensorManager
+~ Sensor mySensor
+~ long lastUpdate
+~ AlertDialog.Builder builder
+# void onCreate(Bundle)
+- void replaceFragment(Fragment)
+# void onStop()
++ void onSensorChanged(SensorEvent)
++ void onAccuracyChanged(Sensor,int)
+}
+class com.example.finalproject.SplashScreen {
+~ TextView splashTitle
+~ LottieAnimationView lottie
+# void onCreate(Bundle)
+}
+class com.example.finalproject.MainActivity {
+~ EditText userEmail
+~ TextView signupText
+~ Button loginButton
+~ FirebaseAuth auth
+~ MediaPlayer mediaPlayer
+# void onCreate(Bundle)
+}
+
+
+androidx.appcompat.app.AppCompatActivity <|-- com.example.finalproject.RegisterPage
+android.hardware.SensorEventListener <|.. com.example.finalproject.HomePage
+androidx.appcompat.app.AppCompatActivity <|-- com.example.finalproject.HomePage
+androidx.appcompat.app.AppCompatActivity <|-- com.example.finalproject.SplashScreen
+androidx.appcompat.app.AppCompatActivity <|-- com.example.finalproject.MainActivity
+@enduml

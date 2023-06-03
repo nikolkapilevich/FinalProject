@@ -1,0 +1,306 @@
+@startuml
+class com.example.finalproject.TouchHelper {
+- ToDoAdapter adapter
++ <<Create>> TouchHelper(ToDoAdapter)
++ boolean onMove(RecyclerView,RecyclerView.ViewHolder,RecyclerView.ViewHolder)
++ void onSwiped(RecyclerView.ViewHolder,int)
++ void onChildDraw(Canvas,RecyclerView,RecyclerView.ViewHolder,float,float,int,boolean)
+}
+class com.example.finalproject.DataClass {
+- String imageURL
++ <<Create>> DataClass(String,String)
++ <<Create>> DataClass()
++ String getImageURL()
++ void setImageURL(String)
++ String getCaption()
++ void setCaption(String)
+}
+class com.example.finalproject.EventAdapter {
++ <<Create>> EventAdapter(Context,List<Event>)
++ View getView(int,View,ViewGroup)
+}
+class com.example.finalproject.NotesFragment {
+~ FloatingActionButton fab
+~ View view
+~ RecyclerView recycler
+~ ArrayList<DataClass> dataList
+~ MyAdapter adapter
+- DatabaseReference databaseReference
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+}
+class com.example.finalproject.CalendarAdapter {
+- ArrayList<LocalDate> days
+- OnItemListener onItemListener
++ <<Create>> CalendarAdapter(ArrayList<LocalDate>,OnItemListener)
++ CalendarViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(CalendarViewHolder,int)
++ int getItemCount()
+}
+interface com.example.finalproject.CalendarAdapter$OnItemListener {
+~ void onItemClick(int,LocalDate)
+}
+class com.example.finalproject.UploadFragment {
+~ View view
+- FloatingActionButton uploadBtn
+- ImageView uploadImage
+~ EditText uploadCaption
+~ ProgressBar progressBar
+- Uri imageUri
+- DatabaseReference databaseReference
+- StorageReference storageReference
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void uploadToFirebase(Uri)
+- String getFileExtension(Uri)
+}
+class com.example.finalproject.WeekViewFragment {
+- View view
+- TextView monthYearText
+- RecyclerView calendarRecyclerView
+- Button backWeek
+- ListView eventListView
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void initWidgets()
+- void setWeekView()
++ void previousWeek(View)
++ void nextWeek(View)
++ void onItemClick(int,LocalDate)
++ void onResume()
+- void setEventAdapter()
++ void newEvent(View)
++ void Daily(View)
+}
+interface com.example.finalproject.OnDialogCloseListener {
+~ void onDialogClose(DialogInterface)
+}
+class com.example.finalproject.CalendarViewHolder {
+- ArrayList<LocalDate> days
++ View parentView
++ TextView DayOfMonth
+- CalendarAdapter.OnItemListener onItemListener
++ <<Create>> CalendarViewHolder(ArrayList<LocalDate>,View,CalendarAdapter.OnItemListener)
++ void onClick(View)
+}
+class com.example.finalproject.MyAdapter {
+- ArrayList<DataClass> dataList
+- Context context
++ <<Create>> MyAdapter(ArrayList<DataClass>,Context)
++ MyViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(MyViewHolder,int)
++ int getItemCount()
+}
+class com.example.finalproject.MyAdapter$MyViewHolder {
+~ ImageView recyclerImage
+~ TextView recyclerCaption
++ <<Create>> MyViewHolder(View)
+}
+class com.example.finalproject.HourAdapter {
++ <<Create>> HourAdapter(Context,List<HourEvent>)
++ View getView(int,View,ViewGroup)
+- void setHour(View,LocalTime)
+- void setEvents(View,ArrayList<Event>)
+- void setEvent(TextView,Event)
+- void hideEvent(TextView)
+}
+class com.example.finalproject.DailyCalendarFragment {
++ View view
+- TextView monthDayText
+- ListView hourListView
+- Button backDay
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void initWidgets()
++ void onResume()
+- void setDayView()
+- void setHourAdapter()
+- ArrayList<HourEvent> hourEventList()
++ void previousDay(View)
++ void nextDay(View)
++ void newEventAction(View)
+}
+class com.example.finalproject.AddNewTask {
++ {static} String TAG
+- TextView setDueDate
+- EditText mTaskEdit
+- Button mSaveBtn
+- FirebaseFirestore firestore
+- Context context
+- String dueDate
+- String id
+- String dueDateUpdate
+- ImageButton micBtn
+- {static} int RECOGNIZER_CODE
++ {static} AddNewTask newInstance()
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void onViewCreated(View,Bundle)
++ void onActivityResult(int,int,Intent)
++ void onAttach(Context)
++ void onDismiss(DialogInterface)
+}
+class com.example.finalproject.ToDoAdapter {
+- List<ToDoModel> todoList
+- CheckListFragment checkListFragment
+- FirebaseFirestore firestore
++ <<Create>> ToDoAdapter(CheckListFragment,List<ToDoModel>)
++ MyViewHolder onCreateViewHolder(ViewGroup,int)
++ void deleteTask(int)
++ Context getContext()
++ void editTask(int)
++ void onBindViewHolder(MyViewHolder,int)
+- boolean toBoolean(int)
++ int getItemCount()
+}
+class com.example.finalproject.ToDoAdapter$MyViewHolder {
+~ TextView tvDueDate
+~ CheckBox mCheckBox
++ <<Create>> MyViewHolder(View)
+}
+class com.example.finalproject.CalendarFragment {
+- View view
+- TextView monthYearText
+- RecyclerView calendarRecyclerView
+- LocalDate selectedDate
+- Button back
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void initWidgets()
+- void setMonthView()
++ String monthYearFromDate(LocalDate)
++ void previousMonth(View)
++ void nextMonth(View)
++ void onItemClick(int,LocalDate)
++ void Weekly(View)
+}
+class com.example.finalproject.CheckListFragment {
+- View view
+- RecyclerView recyclerView
+- FloatingActionButton mFab
+- FirebaseFirestore firestore
+- ToDoAdapter adapter
+- List<ToDoModel> mList
+- Query query
+- ListenerRegistration listenerRegistration
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void showData()
++ void onDialogClose(DialogInterface)
+}
+class com.example.finalproject.HourEvent {
+~ LocalTime time
+~ ArrayList<Event> events
++ <<Create>> HourEvent(LocalTime,ArrayList<Event>)
++ LocalTime getTime()
++ void setTime(LocalTime)
++ ArrayList<Event> getEvents()
++ void setEvents(ArrayList<Event>)
+}
+class com.example.finalproject.MainActivity {
+~ EditText userEmail
+~ TextView signupText
+~ Button loginButton
+~ FirebaseAuth auth
+~ MediaPlayer mediaPlayer
+# void onCreate(Bundle)
+}
+class com.example.finalproject.HomePage {
+~ MaterialToolbar toolbar
+~ DrawerLayout drawerLayout
+~ NavigationView navigationView
+~ ImageView calendarIv
+~ SensorManager sensorManager
+~ Sensor mySensor
+~ long lastUpdate
+~ AlertDialog.Builder builder
+# void onCreate(Bundle)
+- void replaceFragment(Fragment)
+# void onStop()
++ void onSensorChanged(SensorEvent)
++ void onAccuracyChanged(Sensor,int)
+}
+class com.example.finalproject.TaskId {
++ String TaskId
++ T withId(String)
+}
+class com.example.finalproject.ToDoModel {
+- String task
+- int status
++ String getTask()
++ String getDue()
++ int getStatus()
+}
+class com.example.finalproject.EventEditFragment {
+- View view
+- EditText etEventName
+- TextView tvEventDate
+- LocalTime time
+- Button btnSave
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void initWidgets()
++ void saveEvent(View)
+}
+class com.example.finalproject.CalendarUtils {
++ {static} LocalDate selectedDate
++ {static} String formattedDate(LocalDate)
++ {static} String formattedTime(LocalTime)
++ {static} String formattedShortTime(LocalTime)
++ {static} String monthYearFromDate(LocalDate)
++ {static} String monthDayFromDate(LocalDate)
++ {static} ArrayList<LocalDate> daysInMonthArray()
++ {static} ArrayList<LocalDate> daysInWeekArray(LocalDate)
+- {static} LocalDate sundayForDate(LocalDate)
+}
+class com.example.finalproject.Event {
++ {static} ArrayList<Event> eventsList
+- String name
+- LocalDate date
+- LocalTime time
++ <<Create>> Event(String,LocalDate,LocalTime)
++ {static} ArrayList<Event> eventsForDate(LocalDate)
++ {static} ArrayList<Event> eventsForDateAndTime(LocalDate,LocalTime)
++ String getName()
++ void setName(String)
++ LocalDate getDate()
++ void setDate(LocalDate)
++ LocalTime getTime()
++ void setTime(LocalTime)
+}
+class com.example.finalproject.RegisterPage {
+~ EditText regisEmail
+~ Button regisButton
+- FirebaseAuth auth
+# void onCreate(Bundle)
+}
+class com.example.finalproject.SplashScreen {
+~ TextView splashTitle
+~ LottieAnimationView lottie
+# void onCreate(Bundle)
+}
+
+
+com.example.finalproject.SimpleCallback <|-- com.example.finalproject.TouchHelper
+android.widget.ArrayAdapter <|-- com.example.finalproject.EventAdapter
+androidx.fragment.app.Fragment <|-- com.example.finalproject.NotesFragment
+com.example.finalproject.Adapter <|-- com.example.finalproject.CalendarAdapter
+com.example.finalproject.CalendarAdapter +.. com.example.finalproject.CalendarAdapter$OnItemListener
+androidx.fragment.app.Fragment <|-- com.example.finalproject.UploadFragment
+com.example.finalproject.OnItemListener <|.. com.example.finalproject.WeekViewFragment
+androidx.fragment.app.Fragment <|-- com.example.finalproject.WeekViewFragment
+com.example.finalproject.OnClickListener <|.. com.example.finalproject.CalendarViewHolder
+com.example.finalproject.ViewHolder <|-- com.example.finalproject.CalendarViewHolder
+com.example.finalproject.Adapter <|-- com.example.finalproject.MyAdapter
+com.example.finalproject.MyAdapter +.. com.example.finalproject.MyAdapter$MyViewHolder
+com.example.finalproject.ViewHolder <|-- com.example.finalproject.MyAdapter$MyViewHolder
+android.widget.ArrayAdapter <|-- com.example.finalproject.HourAdapter
+androidx.fragment.app.Fragment <|-- com.example.finalproject.DailyCalendarFragment
+com.google.android.material.bottomsheet.BottomSheetDialogFragment <|-- com.example.finalproject.AddNewTask
+com.example.finalproject.Adapter <|-- com.example.finalproject.ToDoAdapter
+com.example.finalproject.ToDoAdapter +.. com.example.finalproject.ToDoAdapter$MyViewHolder
+com.example.finalproject.ViewHolder <|-- com.example.finalproject.ToDoAdapter$MyViewHolder
+com.example.finalproject.OnItemListener <|.. com.example.finalproject.CalendarFragment
+androidx.fragment.app.Fragment <|-- com.example.finalproject.CalendarFragment
+com.example.finalproject.OnDialogCloseListener <|.. com.example.finalproject.CheckListFragment
+androidx.fragment.app.Fragment <|-- com.example.finalproject.CheckListFragment
+androidx.appcompat.app.AppCompatActivity <|-- com.example.finalproject.MainActivity
+android.hardware.SensorEventListener <|.. com.example.finalproject.HomePage
+androidx.appcompat.app.AppCompatActivity <|-- com.example.finalproject.HomePage
+com.example.finalproject.TaskId <|-- com.example.finalproject.ToDoModel
+androidx.fragment.app.Fragment <|-- com.example.finalproject.EventEditFragment
+androidx.appcompat.app.AppCompatActivity <|-- com.example.finalproject.RegisterPage
+androidx.appcompat.app.AppCompatActivity <|-- com.example.finalproject.SplashScreen
+@enduml
