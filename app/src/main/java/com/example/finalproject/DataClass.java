@@ -1,4 +1,4 @@
-package com.example.finalproject.classes;
+package com.example.finalproject;
 
 public class DataClass {
 

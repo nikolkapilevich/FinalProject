@@ -1,6 +1,6 @@
-package com.example.finalproject.fragments;
+package com.example.finalproject;
 
-import static com.example.finalproject.classes.CalendarUtils.selectedDate;
+import static com.example.finalproject.CalendarUtils.selectedDate;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -15,12 +15,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import com.example.finalproject.classes.CalendarUtils;
-import com.example.finalproject.classes.Event;
-import com.example.finalproject.adapters.HourAdapter;
-import com.example.finalproject.classes.HourEvent;
-import com.example.finalproject.R;
 
 import java.time.LocalTime;
 import java.time.format.TextStyle;

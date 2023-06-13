@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragments.EventEditFragment"
+    tools:context=".EventEditFragment"
     android:background="@color/light_pink">
 
     <TextView

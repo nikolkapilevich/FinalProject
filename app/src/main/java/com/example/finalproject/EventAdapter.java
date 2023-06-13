@@ -1,4 +1,4 @@
-package com.example.finalproject.adapters;
+package com.example.finalproject;
 
 import android.content.Context;
 import android.os.Build;
@@ -11,10 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-
-import com.example.finalproject.classes.CalendarUtils;
-import com.example.finalproject.classes.Event;
-import com.example.finalproject.R;
 
 import java.util.List;
 

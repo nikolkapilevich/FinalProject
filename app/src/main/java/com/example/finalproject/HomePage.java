@@ -1,4 +1,4 @@
-package com.example.finalproject.activities;
+package com.example.finalproject;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -22,14 +22,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.finalproject.fragments.CalendarFragment;
-import com.example.finalproject.fragments.CheckListFragment;
-import com.example.finalproject.fragments.NotesFragment;
-import com.example.finalproject.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 
-public class HomePage extends AppCompatActivity implements SensorEventListener {
+public class HomePage extends AppCompatActivity implements SensorEventListener{
     MaterialToolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -37,7 +33,8 @@ public class HomePage extends AppCompatActivity implements SensorEventListener {
      SensorManager sensorManager;
      Sensor mySensor;
      long lastUpdate=0, actualTime=0;
-    AlertDialog.Builder builder , alert;
+    AlertDialog.Builder builder , alert , mute;
+    Intent serviceIntent;
 
 
     @SuppressLint("MissingInflatedId")
@@ -56,6 +53,46 @@ public class HomePage extends AppCompatActivity implements SensorEventListener {
         logoutIv=findViewById(R.id.logoutIv);
 
         alert = new AlertDialog.Builder(this);
+        mute = new AlertDialog.Builder(this);
+        serviceIntent = new Intent(getApplicationContext(),MyService.class);
+
+        calendarIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                replaceFragment(new CalendarFragment());
+            }
+        });
+        todolistIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                replaceFragment(new CheckListFragment());
+            }
+        });
+        notesIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                replaceFragment(new NotesFragment());
+            }
+        });
+        logoutIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alert.setTitle("Logout").setMessage("Are you sure you want to close the app?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    }
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                alert.create().show();
+            }
+        });
+
+
 
         lastUpdate = System.currentTimeMillis();
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -96,6 +133,10 @@ public class HomePage extends AppCompatActivity implements SensorEventListener {
 
                     case R.id.nav_checklist:
                         replaceFragment(new CheckListFragment());
+                        break;
+
+                    case R.id.nav_mute:
+                        stopService(new Intent(getApplicationContext(), MyService.class));
                         break;
 
                     case R.id.nav_login:

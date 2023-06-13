@@ -1,6 +1,4 @@
-package com.example.finalproject.classes;
-
-import com.example.finalproject.classes.Event;
+package com.example.finalproject;
 
 import java.time.LocalTime;
 import java.util.ArrayList;

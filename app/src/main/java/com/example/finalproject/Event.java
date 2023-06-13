@@ -1,4 +1,4 @@
-package com.example.finalproject.classes;
+package com.example.finalproject;
 
 import android.os.Build;
 

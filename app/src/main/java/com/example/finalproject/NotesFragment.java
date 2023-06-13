@@ -1,4 +1,4 @@
-package com.example.finalproject.fragments;
+package com.example.finalproject;
 
 import android.os.Bundle;
 
@@ -12,9 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.finalproject.classes.DataClass;
-import com.example.finalproject.adapters.MyAdapter;
-import com.example.finalproject.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

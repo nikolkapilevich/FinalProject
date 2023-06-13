@@ -16,16 +16,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinalProject">
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.HomePage"
+            android:name=".HomePage"
             android:exported="true" />
         <activity
-            android:name=".activities.RegisterPage"
+            android:name=".RegisterPage"
             android:exported="true" />
         <activity
-            android:name=".activities.SplashScreen"
+            android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,6 +33,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:name=".MyService"/>
 
         <meta-data
             android:name="preloaded_fonts"

@@ -1,4 +1,4 @@
-package com.example.finalproject.fragments;
+package com.example.finalproject;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -13,12 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.finalproject.classes.AddNewTask;
-import com.example.finalproject.classes.OnDialogCloseListener;
-import com.example.finalproject.R;
-import com.example.finalproject.adapters.ToDoAdapter;
-import com.example.finalproject.classes.ToDoModel;
-import com.example.finalproject.classes.TouchHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
@@ -76,17 +70,18 @@ public class CheckListFragment extends Fragment implements OnDialogCloseListener
         listenerRegistration = query.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                for (DocumentChange documentChange : value.getDocumentChanges()){
-                    if (documentChange.getType() == DocumentChange.Type.ADDED){
-                        String id = documentChange.getDocument().getId();
-                        ToDoModel toDoModel = documentChange.getDocument().toObject(ToDoModel.class).withId(id);
+                if (value != null) {
+                    for (DocumentChange documentChange : value.getDocumentChanges()) {
+                        if (documentChange.getType() == DocumentChange.Type.ADDED) {
+                            String id = documentChange.getDocument().getId();
+                            ToDoModel toDoModel = documentChange.getDocument().toObject(ToDoModel.class).withId(id);
 
-                        mList.add(toDoModel);
-                        adapter.notifyDataSetChanged();
+                            mList.add(toDoModel);
+                            adapter.notifyDataSetChanged();
+                        }
                     }
                 }
                 listenerRegistration.remove();
-
             }
         });
     }

@@ -26,6 +26,10 @@
         <menu>
             <group android:checkableBehavior="single">
                 <item
+                    android:id="@+id/nav_mute"
+                    android:icon="@drawable/baseline_volume_off_24"
+                    android:title="mute"/>
+                <item
                     android:id="@+id/nav_login"
                     android:icon="@drawable/ic_baseline_login_24"
                     android:title="Logout"/>

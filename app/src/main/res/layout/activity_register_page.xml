@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="@drawable/signupbkg"
-    tools:context=".activities.RegisterPage">
+    tools:context=".RegisterPage">
 
 
     <ImageView

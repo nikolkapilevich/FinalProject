@@ -1,4 +1,4 @@
-package com.example.finalproject.adapters;
+package com.example.finalproject;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,10 +12,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.finalproject.classes.AddNewTask;
-import com.example.finalproject.R;
-import com.example.finalproject.classes.ToDoModel;
-import com.example.finalproject.fragments.CheckListFragment;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;

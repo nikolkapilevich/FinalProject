@@ -1,6 +1,6 @@
-package com.example.finalproject.classes;
+package com.example.finalproject;
 
-public class ToDoModel extends com.example.finalproject.classes.TaskId
+public class ToDoModel extends com.example.finalproject.TaskId
 {
     private String task , due;
     private int status;

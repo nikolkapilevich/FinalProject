@@ -1,7 +1,7 @@
-package com.example.finalproject.fragments;
+package com.example.finalproject;
 
-import static com.example.finalproject.classes.CalendarUtils.daysInWeekArray;
-import static com.example.finalproject.classes.CalendarUtils.monthYearFromDate;
+import static com.example.finalproject.CalendarUtils.daysInWeekArray;
+import static com.example.finalproject.CalendarUtils.monthYearFromDate;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -18,12 +18,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import com.example.finalproject.adapters.CalendarAdapter;
-import com.example.finalproject.classes.CalendarUtils;
-import com.example.finalproject.classes.Event;
-import com.example.finalproject.adapters.EventAdapter;
-import com.example.finalproject.R;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

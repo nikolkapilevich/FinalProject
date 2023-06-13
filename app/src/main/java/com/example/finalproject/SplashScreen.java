@@ -1,4 +1,4 @@
-package com.example.finalproject.activities;
+package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,6 @@ import android.os.Handler;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.example.finalproject.R;
 
 public class SplashScreen extends AppCompatActivity {
     TextView splashTitle;

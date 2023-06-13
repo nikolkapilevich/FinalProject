@@ -1,4 +1,4 @@
-package com.example.finalproject.activities;
+package com.example.finalproject;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.finalproject.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
@@ -25,7 +24,7 @@ public class MainActivity extends AppCompatActivity  {
     TextView signupText;
     Button loginButton;
     FirebaseAuth auth;
-    MediaPlayer mediaPlayer;
+    Intent serviceIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +34,10 @@ public class MainActivity extends AppCompatActivity  {
         password = findViewById(R.id.password);
         loginButton = findViewById(R.id.loginButton);
         signupText=(TextView)findViewById(R.id.signupText);
-        mediaPlayer = MediaPlayer.create(this, R.raw.music);
-        mediaPlayer.start();
-        mediaPlayer.setLooping(true);
+
+        serviceIntent = new Intent(getApplicationContext(),MyService.class);
+        startService(new Intent(getApplicationContext(),MyService.class));
+
 
         auth = FirebaseAuth.getInstance();
 

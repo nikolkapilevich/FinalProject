@@ -1,4 +1,4 @@
-package com.example.finalproject.fragments;
+package com.example.finalproject;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -23,8 +23,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.finalproject.classes.DataClass;
-import com.example.finalproject.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
