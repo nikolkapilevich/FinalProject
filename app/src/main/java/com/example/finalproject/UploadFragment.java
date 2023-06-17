@@ -36,6 +36,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -57,6 +58,7 @@ public class UploadFragment extends Fragment {
     private Uri imageUri;
     final private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Images");
     final private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+
 
     // Declare a constant for the image picker request code
     private static final int IMAGE_PICKER_REQUEST_CODE = 2;
@@ -156,7 +158,7 @@ public class UploadFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (imageUri != null) {
-                    uploadToFirebase(imageUri);
+                    uploadToFirebase(imageUri,uploadCaption.getText().toString());
                 }
                 else {
                     Toast.makeText(getActivity(),"Please select Image",Toast.LENGTH_LONG).show();
@@ -191,41 +193,65 @@ public class UploadFragment extends Fragment {
     }
 
 
-    public void uploadToFirebase (Uri uri)
+    public void uploadToFirebase (Uri uri  , String uploadCaption)
     {
-        String caption = uploadCaption.getText().toString();
-        final StorageReference imageReference = storageReference.child(System.currentTimeMillis() + "." + getFileExtension(uri));
+        // Get the current user ID
+        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        imageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                imageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        // Create a storage reference for the image
+        StorageReference imageReference = storageReference.child(System.currentTimeMillis() + "." + getFileExtension(imageUri));
+
+        // Upload the image to Firebase Storage
+        imageReference.putFile(imageUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
-                    public void onSuccess(Uri uri) {
-                            DataClass dataClass = new DataClass(uri.toString() , caption);
-                            String key = databaseReference.push().getKey();
-                            databaseReference.child(key).setValue(dataClass);
-                            progressBar.setVisibility(View.INVISIBLE);
-                            Toast.makeText(getActivity(), "uploaded", Toast.LENGTH_LONG).show();
-                            Fragment secondFrag = new NotesFragment();
-                            FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
-                            fm.replace(R.id.frameLayout,secondFrag).commit();
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // Get the download URL of the uploaded image
+                        imageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                // Create a new DataClass object with the imageURL, caption, and currentUserId
+                                DataClass dataClass = new DataClass(uri.toString(), uploadCaption, currentUserId);
+
+                                // Save the data to Firebase
+                                String key = databaseReference.push().getKey();
+                                databaseReference.child(key).setValue(dataClass)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                // Data saved successfully
+                                                Toast.makeText(getActivity(), "Uploaded", Toast.LENGTH_LONG).show();
+                                                Fragment secondFrag = new NotesFragment();
+                                                FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
+                                                fm.replace(R.id.frameLayout, secondFrag).commit();
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                // Failed to save data
+                                                Toast.makeText(getActivity(), "Upload failed", Toast.LENGTH_LONG).show();
+                                            }
+                                        });
+                            }
+                        });
+                    }
+                })
+                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                        progressBar.setVisibility(View.VISIBLE);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        progressBar.setVisibility(View.INVISIBLE);
+                        Toast.makeText(getActivity(), "Upload failed", Toast.LENGTH_LONG).show();
                     }
                 });
-            }
-        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                progressBar.setVisibility(View.VISIBLE);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                progressBar.setVisibility(View.INVISIBLE);
-                Toast.makeText(getActivity(), "failed", Toast.LENGTH_LONG).show();
-            }
-        });
     }
+
 
     private String getFileExtension (Uri fileUri)
     {

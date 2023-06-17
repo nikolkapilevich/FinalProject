@@ -18,24 +18,35 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     private ArrayList<DataClass> dataList;
     private Context context;
+    private String currentUserId; // Add a field to store the current user ID
 
-    public MyAdapter(ArrayList<DataClass> dataList, Context context) {
+    public MyAdapter(ArrayList<DataClass> dataList, Context context, String currentUserId) {
         this.dataList = dataList;
         this.context = context;
+        this.currentUserId = currentUserId;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.recycler_item, parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.recycler_item, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Glide.with(context).load(dataList.get(position).getImageURL()).into(holder.recyclerImage);
-        holder.recyclerCaption.setText(dataList.get(position).getCaption());
+        DataClass data = dataList.get(position);
 
+        // Check if the image belongs to the current user
+        if (data.getUserId().equals(currentUserId)) {
+            Glide.with(context).load(data.getImageURL()).into(holder.recyclerImage);
+            holder.recyclerCaption.setText(data.getCaption());
+        } else {
+            // Hide or handle images that do not belong to the current user
+            // For example, you can hide the image view and caption or display a placeholder
+            holder.recyclerImage.setVisibility(View.GONE);
+            holder.recyclerCaption.setText("Not your image");
+        }
     }
 
     @Override

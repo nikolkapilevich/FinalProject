@@ -2,11 +2,12 @@ package com.example.finalproject;
 
 public class DataClass {
 
-    private String imageURL , caption;
+    private String imageURL , caption , userId;
 
-    public DataClass(String imageURL, String caption) {
+    public DataClass(String imageURL, String caption , String userId) {
         this.imageURL = imageURL;
         this.caption = caption;
+        this.userId = userId;
     }
 
     public DataClass () {
@@ -27,5 +28,12 @@ public class DataClass {
 
     public void setCaption(String caption) {
         this.caption = caption;
+    }
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

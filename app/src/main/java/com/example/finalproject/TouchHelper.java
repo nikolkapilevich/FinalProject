@@ -78,8 +78,6 @@ public class TouchHelper extends ItemTouchHelper.SimpleCallback {
             AlertDialog dialog = builder.create();
             dialog.show();
         }
-
-
         else {
             adapter.editTask(position);
         }
