@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -66,7 +67,9 @@ public class CheckListFragment extends Fragment implements OnDialogCloseListener
     }
 
     private void showData(){
-        query =firestore.collection("task").orderBy("time" , Query.Direction.DESCENDING);
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        query = firestore.collection("users").document(userId).collection("tasks").orderBy("time", Query.Direction.DESCENDING);
         listenerRegistration = query.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -84,6 +87,31 @@ public class CheckListFragment extends Fragment implements OnDialogCloseListener
                 listenerRegistration.remove();
             }
         });
+
+
+
+
+
+    /*    query =firestore.collection("task").orderBy("time" , Query.Direction.DESCENDING);
+        listenerRegistration = query.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                if (value != null) {
+                    for (DocumentChange documentChange : value.getDocumentChanges()) {
+                        if (documentChange.getType() == DocumentChange.Type.ADDED) {
+                            String id = documentChange.getDocument().getId();
+                            ToDoModel toDoModel = documentChange.getDocument().toObject(ToDoModel.class).withId(id);
+
+                            mList.add(toDoModel);
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+                }
+                listenerRegistration.remove();
+            }
+        });
+     */
+
     }
 
     @Override

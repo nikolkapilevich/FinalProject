@@ -27,8 +27,10 @@ import androidx.annotation.Nullable;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -155,6 +157,62 @@ public class AddNewTask extends BottomSheetDialogFragment
             @Override
             public void onClick(View view) {
                 String task = mTaskEdit.getText().toString();
+                String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                if (finalIsUpdate) {
+                    firestore.collection("users").document(userId).collection("tasks").document(id)
+                            .update("task", task, "due", dueDate)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(context, "Task Updated", Toast.LENGTH_LONG).show();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                            });
+                } else {
+                    if (task.isEmpty()) {
+                        Toast.makeText(context, "Empty task not allowed!", Toast.LENGTH_LONG).show();
+                    } else {
+                        Map<String, Object> taskMap = new HashMap<>();
+                        taskMap.put("task", task);
+                        taskMap.put("due", dueDate);
+                        taskMap.put("status", 0);
+                        taskMap.put("time", FieldValue.serverTimestamp());
+
+                        firestore.collection("users").document(userId).collection("tasks")
+                                .add(taskMap)
+                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                    @Override
+                                    public void onSuccess(DocumentReference documentReference) {
+                                        Toast.makeText(context, "Task Saved", Toast.LENGTH_LONG).show();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                    }
+                }
+                dismiss();
+
+
+
+
+
+
+
+
+
+
+/*
+                String task = mTaskEdit.getText().toString();
 
                 if (finalIsUpdate) {
                     firestore.collection("task").document(id).update("task",task,"due",dueDate);
@@ -189,7 +247,9 @@ public class AddNewTask extends BottomSheetDialogFragment
                     }
                 }
                     dismiss();
+    */
             }
+
         });
     }
 

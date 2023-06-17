@@ -6,9 +6,9 @@ import com.google.firebase.firestore.Exclude;
 
 public class TaskId {
     @Exclude
-    public String TaskId;
+    public String Id;
     public <T extends TaskId> T withId (@NonNull final String id){
-        this.TaskId = id;
+        this.Id = id;
         return (T) this;
     }
 }

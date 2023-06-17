@@ -36,7 +36,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
 
     public void deleteTask (int position){
         ToDoModel toDoModel = todoList.get(position);
-        firestore.collection("task").document(toDoModel.TaskId).delete();
+        firestore.collection("task").document(toDoModel.Id).delete();
         todoList.remove(position);
         notifyItemRemoved(position);
     }
@@ -51,7 +51,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
         Bundle bundle = new Bundle();
         bundle.putString("task", toDoModel.getTask());
         bundle.putString("due", toDoModel.getDue());
-        bundle.putString("id", toDoModel.TaskId);
+        bundle.putString("id", toDoModel.Id);
 
         AddNewTask addNewTask = new AddNewTask();
         addNewTask.setArguments(bundle);
@@ -70,10 +70,10 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked) {
-                    firestore.collection("task").document(toDoModel.TaskId).update("status",1);
+                    firestore.collection("task").document(toDoModel.Id).update("status",1);
                 }
                 else {
-                    firestore.collection("task").document(toDoModel.TaskId).update("status",0);
+                    firestore.collection("task").document(toDoModel.Id).update("status",0);
                 }
             }
         });
@@ -86,6 +86,13 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
     @Override
     public int getItemCount() {
         return todoList.size();
+    }
+
+    public String getTaskId(int position) {
+        // Retrieve the task ID from your dataset or list based on the position
+        // Replace `yourDataset` with the actual dataset you are using to store the tasks
+        ToDoModel task = todoList.get(position);
+        return task.Id; // Replace `getId()` with the method to get the task ID
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
