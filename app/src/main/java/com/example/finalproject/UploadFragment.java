@@ -72,33 +72,8 @@ public class UploadFragment extends Fragment {
         uploadImage = view.findViewById(R.id.uploadImage);
         progressBar = view.findViewById(R.id.progressBar);
         progressBar.setVisibility(View.INVISIBLE);
-/*
-        ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
-                        if (result.getResultCode() == Activity.RESULT_OK){
-                            Intent data = result.getData();
-                            imageUri = data.getData();
-                            uploadImage.setImageURI(imageUri);
-                        }
-                        else {
-                            Toast.makeText(getActivity(), "No Image Selected", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                }
-        );
 
-        uploadImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent photoPicker = new Intent();
-                photoPicker.setAction(Intent.ACTION_GET_CONTENT);
-                photoPicker.setType("image/*");
-                activityResultLauncher.launch(photoPicker);
-            }
-        });
-*/
+
         ActivityResultLauncher<Intent> activityResultLauncherGallery = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
                     @Override
@@ -135,12 +110,6 @@ public class UploadFragment extends Fragment {
                                         // Set the image URI to the ImageView
                                         uploadImage.setImageURI(imageUri);
 
-
-
-
-                                        // Do something with the captured image bitmap
-                                        // For example, set it to the ImageView
-                                     //   uploadImage.setImageBitmap(imageBitmap);
                                     }
                             }
                         } else {
@@ -175,20 +144,6 @@ public class UploadFragment extends Fragment {
                                     Toast.makeText(getContext(), "No camera app found", Toast.LENGTH_SHORT).show();
                                 }
 
-                                /*
-                                // Check if camera permission is granted
-                                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA)
-                                        != PackageManager.PERMISSION_GRANTED) {
-                                    // Request camera permission
-                                    ActivityCompat.requestPermissions(getActivity(),
-                                            new String[]{Manifest.permission.CAMERA},
-                                            CAMERA_PERMISSION_REQUEST_CODE);
-                                } else {
-                                    // Camera permission has already been granted
-                                    launchCamera();
-                                }
-
-                                 */
                                 break;
                         }
                     }
@@ -235,30 +190,6 @@ public class UploadFragment extends Fragment {
 
     }
 
-    /*
-    // Override the onRequestPermissionsResult method to handle the permission request result
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Camera permission granted
-                launchCamera();
-            } else {
-                // Camera permission denied
-                Toast.makeText(getActivity(), "Camera permission denied", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-
-    // Method to launch the camera intent
-    private void launchCamera() {
-        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        activityResultLauncher.launch(cameraIntent);
-    }
-
- */
 
     public void uploadToFirebase (Uri uri)
     {
