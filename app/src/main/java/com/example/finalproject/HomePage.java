@@ -80,7 +80,9 @@ public class HomePage extends AppCompatActivity implements SensorEventListener{
                 alert.setTitle("Logout").setMessage("Are you sure you want to close the app?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        finish();
+                        finishAffinity();
+                        stopService(new Intent(getApplicationContext(), MyService.class));
+
                     }
                 }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
@@ -143,7 +145,8 @@ public class HomePage extends AppCompatActivity implements SensorEventListener{
                         alert.setTitle("Logout").setMessage("Are you sure you want to close the app?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                finish();
+                                finishAffinity();
+                                stopService(new Intent(getApplicationContext(), MyService.class));
                             }
                         }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                             @Override
@@ -195,7 +198,8 @@ public class HomePage extends AppCompatActivity implements SensorEventListener{
                     builder.setTitle("Logout").setMessage("Are you sure you want to close the app?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            finish();
+                            finishAffinity();
+                            stopService(new Intent(getApplicationContext(), MyService.class));
                         }
                     }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                         @Override
